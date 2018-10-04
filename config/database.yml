@@ -24,7 +24,7 @@ default: &default
 development:
   <<: *default
   database: <%= ENV.fetch("midatabase") %>
-  username: <%= ENV.fetch("miusuario") %>
+  user: <%= ENV.fetch("miusuario") %>
   password: <%= ENV.fetch("mipass") %>
   host: localhost
   port: 5432
