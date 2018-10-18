@@ -1,27 +1,21 @@
 class JsonWebToken
 
-  @ecdsa_public = ""
   
   def self.encode(payload)
-     ecdsa_key = OpenSSL::PKey::EC.new 'prime256v1'
-     ecdsa_key.generate_key
-     @ecdsa_public = OpenSSL::PKey::EC.new ecdsa_key
-     @ecdsa_public.private_key = nil
-     token = JWT.encode payload, ecdsa_key, 'ES256'
-     return token
-   end
+    exp = 2.hours.from_now
+    payload[:exp] = exp.to_i
+    jwt_pk = Rails.application.credentials[Rails.env.to_sym][:jwt_private_key]
+    token = JWT.encode(payload, jwt_pk)
+    return token
+  end
   
   def self.decode(token)
-    puts "llave ecdsa"
-    puts @ecdsa_public
-    decoded_token = JWT.decode token, @ecdsa_public, true, { algorithm: 'ES256' }
-    puts "-------------------------------"
-    puts "DECODED TOKEN"
-    puts decoded_token
-    return decoded_token 
-  rescue
-    nil
-  end
+    jwt_pk = Rails.application.credentials[Rails.env.to_sym][:jwt_private_key]
+    body = JWT.decode(token, jwt_pk)[0]
+    HashWithIndifferentAccess.new body
+   rescue
+     nil
+   end
   
 end
   

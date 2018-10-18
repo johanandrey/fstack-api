@@ -24,6 +24,10 @@ class UsuariosController < ApplicationController
     end
   end
 
+  def current
+    render json: current_user
+  end
+
   # PATCH/PUT /usuarios/1
   def update
     if @usuario.update(usuario_params)

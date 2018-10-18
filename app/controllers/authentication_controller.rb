@@ -25,14 +25,13 @@ class AuthenticationController < ApplicationController
       else
         puts "NO vacío"
         token = JsonWebToken.encode({user_id: user.id})
-        puts "TOKEN DESCIFRADO"
-        descifrado = JsonWebToken.decode(token)
+        #puts "TOKEN DESCIFRADO"
+        #descifrado = JsonWebToken.decode(token)
         puts token
         {
         otro: "test",
         auth_token: token,
-        user: {id: user.id, email: user.email},
-        token_descifrado: descifrado
+        user: {id: user.id, email: user.email}
         }
       end
     end

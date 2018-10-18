@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   # ruta que solicita el JWT
   get 'home' => 'home#index'
   
+  get 'current' => 'usuarios#current'
 end

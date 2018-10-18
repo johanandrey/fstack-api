@@ -25,7 +25,9 @@ module Proyectof
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
-        resource '*', headers: :any, methods: [:get, :patch, :delete, :put, :post, :options]
+        resource '*', 
+          headers: :any, 
+          methods: [:get, :patch, :delete, :put, :post, :options]
       end
     end
 
