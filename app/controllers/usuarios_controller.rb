@@ -1,5 +1,6 @@
 class UsuariosController < ApplicationController
-  before_action :authenticate_request!, :set_usuario, only: [:show, :update, :destroy]
+  before_action :set_usuario, only: [:show, :update, :destroy]
+  
 
   # GET /usuarios
   def index
@@ -24,10 +25,6 @@ class UsuariosController < ApplicationController
     end
   end
 
-  def current
-    render json: current_user
-  end
-
   # PATCH/PUT /usuarios/1
   def update
     if @usuario.update(usuario_params)
@@ -50,6 +47,7 @@ class UsuariosController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def usuario_params
-      params.require(:usuario).permit(:nombre, :apellido, :documento_identificacion, :email, :telefono, :puntaje_total, :puntaje_disponible)
+      params.require(:usuario).permit(:nombre, :apellido, :documento_identificacion, :tipo_documento_id, :email, :password, :password_confirmation, :telefono, :puntaje_total, :puntaje_disponible)
     end
+
 end

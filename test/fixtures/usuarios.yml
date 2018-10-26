@@ -3,8 +3,10 @@
 one:
   nombre: MyString
   apellido: MyString
-  documento_identificacion: 1
+  documento_identificacion: MyString
+  tipo_documento: one
   email: MyString
+  password_digest: <%= BCrypt::Password.create('secret') %>
   telefono: 9.99
   puntaje_total: 1
   puntaje_disponible: 1
@@ -12,8 +14,10 @@ one:
 two:
   nombre: MyString
   apellido: MyString
-  documento_identificacion: 1
+  documento_identificacion: MyString
+  tipo_documento: two
   email: MyString
+  password_digest: <%= BCrypt::Password.create('secret') %>
   telefono: 9.99
   puntaje_total: 1
   puntaje_disponible: 1

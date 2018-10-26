@@ -1,2 +1,35 @@
-TIPS 
-rails g scaffold Usuario nombre:string apellido:string documento_identificacion:integer email:string telefono:decimal{10,0} puntaje_total:integer puntaje_disponible:integer
+SCAFFOLDS:
+
+// Creación tablas:
+
+- TipoDocumento:
+    rails g scaffold Tipo_documento descripcion:string
+
+- Usuarios:
+    rails g scaffold Usuario nombre:string apellido:string documento_identificacion:uniq tipo_documento:references email:uniq password:digest 'telefono:decimal{10,0}' puntaje_total:integer puntaje_disponible:integer
+
+
+
+rake db:migrate RAILS_ENV=development
+
+
+POST:
+
+curl -H "Content-Type: application/json" -d '{ "descripcion": "Cédula de Ciudadanía" }' -X POST http://localhost:3000/tipo_documentos
+curl -H "Content-Type: application/json" -d '{ "descripcion": "Tarjeta de identidad" }' -X POST http://localhost:3000/tipo_documentos
+
+curl -H "Content-Type: application/json" -d '@usuario.json'   http://localhost:3000/usuarios
+
+usuario.json
+{
+    "nombre": "Johan",
+    "apellido": "Barón",
+    "documento_identificacion": "56161631",
+    "tipo_documento": 1,
+    "email": "johanssfd",
+    "password": "1234",
+    "password_confirmation": "1234",
+    "telefono": "32135145",
+    "puntaje_total": 351",
+    "puntaje_disponible: "351"
+}

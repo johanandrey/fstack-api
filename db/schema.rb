@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_11_144106) do
+ActiveRecord::Schema.define(version: 2018_10_25_155438) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "tipo_documentos", force: :cascade do |t|
+    t.string "descripcion"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -30,13 +36,19 @@ ActiveRecord::Schema.define(version: 2018_10_11_144106) do
   create_table "usuarios", force: :cascade do |t|
     t.string "nombre"
     t.string "apellido"
-    t.integer "documento_identificacion"
+    t.string "documento_identificacion"
+    t.bigint "tipo_documento_id"
     t.string "email"
+    t.string "password_digest"
     t.decimal "telefono", precision: 10
     t.integer "puntaje_total"
     t.integer "puntaje_disponible"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["documento_identificacion"], name: "index_usuarios_on_documento_identificacion", unique: true
+    t.index ["email"], name: "index_usuarios_on_email", unique: true
+    t.index ["tipo_documento_id"], name: "index_usuarios_on_tipo_documento_id"
   end
 
+  add_foreign_key "usuarios", "tipo_documentos"
 end

@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
-  # Ruta para todos los servicios de usuarios
+  
   resources :usuarios
+  resources :tipo_documentos
+  # Ruta para todos los servicios de usuarios
 
   # autenticación
   post 'auth_user' => 'authentication#authenticate_user'
