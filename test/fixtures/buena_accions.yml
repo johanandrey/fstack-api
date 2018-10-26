@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  descripcion: MyString
+  puntaje: 1
+  remitente: one
+  receptop: one
+
+two:
+  descripcion: MyString
+  puntaje: 1
+  remitente: two
+  receptop: two

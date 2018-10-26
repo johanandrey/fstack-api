@@ -8,7 +8,11 @@ SCAFFOLDS:
 - Usuarios:
     rails g scaffold Usuario nombre:string apellido:string documento_identificacion:uniq tipo_documento:references email:uniq password:digest 'telefono:decimal{10,0}' puntaje_total:integer puntaje_disponible:integer
 
+- Buenas acciones:
+    rails g scaffold Buena_accion descripcion:string puntaje:integer remitente:references receptop:references
 
+Destroy: 
+    rails destroy scaffold 
 
 rake db:migrate RAILS_ENV=development
 
@@ -24,12 +28,12 @@ usuario.json
 {
     "nombre": "Johan",
     "apellido": "Barón",
-    "documento_identificacion": "56161631",
-    "tipo_documento": 1,
-    "email": "johanssfd",
-    "password": "1234",
-    "password_confirmation": "1234",
-    "telefono": "32135145",
-    "puntaje_total": 351",
-    "puntaje_disponible: "351"
+    "documento_identificacion": 56161631,
+    "tipo_documento_id": 1,
+    "email": "johanssfd@sdfs.com",
+    "password": "1234J$222",
+    "password_confirmation": "1234J$222",
+    "telefono": 32135145,
+    "puntaje_total": 351,
+    "puntaje_disponible": 351
 }

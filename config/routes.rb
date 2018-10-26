@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   
+  resources :buena_accions
   resources :usuarios
   resources :tipo_documentos
   # Ruta para todos los servicios de usuarios

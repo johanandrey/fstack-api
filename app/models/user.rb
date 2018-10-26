@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
 
-  #wrap_parameters :usuario, include: [:password, :password_confirmation]
+  # wrap_parameters :usuario, include: [:password, :password_confirmation]
   before_save { self.email = email.downcase }
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
