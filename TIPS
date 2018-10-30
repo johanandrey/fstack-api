@@ -9,7 +9,7 @@ SCAFFOLDS:
     rails g scaffold Usuario nombre:string apellido:string documento_identificacion:uniq tipo_documento:references email:uniq password:digest 'telefono:decimal{10,0}' puntaje_total:integer puntaje_disponible:integer
 
 - Buenas acciones:
-    rails g scaffold Buena_accion descripcion:string puntaje:integer remitente:references receptop:references
+    rails g scaffold Buena_accion descripcion:string puntaje:integer remitente:references receptor:references
 
 Destroy: 
     rails destroy scaffold 

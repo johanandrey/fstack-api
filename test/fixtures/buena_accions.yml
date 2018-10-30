@@ -4,10 +4,10 @@ one:
   descripcion: MyString
   puntaje: 1
   remitente: one
-  receptop: one
+  receptor: one
 
 two:
   descripcion: MyString
   puntaje: 1
   remitente: two
-  receptop: two
+  receptor: two

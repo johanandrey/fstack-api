@@ -5,10 +5,8 @@ class CreateBuenaAccions < ActiveRecord::Migration[5.2]
       t.integer :puntaje
       t.references :remitente
       t.references :receptor
+
       t.timestamps
     end
-
-    add_foreign_key :buena_accions, :usuario, column: remitente_id, primary_key: :id
-    add_foreign_key :buena_accions, :usuario, column: receptor_id, primary_key: :id
   end
 end

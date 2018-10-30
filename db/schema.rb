@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_25_155438) do
+ActiveRecord::Schema.define(version: 2018_10_30_024740) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "buena_accions", force: :cascade do |t|
+    t.string "descripcion"
+    t.integer "puntaje"
+    t.bigint "remitente_id"
+    t.bigint "receptor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["receptor_id"], name: "index_buena_accions_on_receptor_id"
+    t.index ["remitente_id"], name: "index_buena_accions_on_remitente_id"
+  end
 
   create_table "tipo_documentos", force: :cascade do |t|
     t.string "descripcion"

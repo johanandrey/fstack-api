@@ -12,7 +12,7 @@ class BuenaAccionsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create buena_accion" do
     assert_difference('BuenaAccion.count') do
-      post buena_accions_url, params: { buena_accion: { descripcion: @buena_accion.descripcion, puntaje: @buena_accion.puntaje, receptop_id: @buena_accion.receptop_id, remitente_id: @buena_accion.remitente_id } }, as: :json
+      post buena_accions_url, params: { buena_accion: { descripcion: @buena_accion.descripcion, puntaje: @buena_accion.puntaje, receptor_id: @buena_accion.receptor_id, remitente_id: @buena_accion.remitente_id } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class BuenaAccionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update buena_accion" do
-    patch buena_accion_url(@buena_accion), params: { buena_accion: { descripcion: @buena_accion.descripcion, puntaje: @buena_accion.puntaje, receptop_id: @buena_accion.receptop_id, remitente_id: @buena_accion.remitente_id } }, as: :json
+    patch buena_accion_url(@buena_accion), params: { buena_accion: { descripcion: @buena_accion.descripcion, puntaje: @buena_accion.puntaje, receptor_id: @buena_accion.receptor_id, remitente_id: @buena_accion.remitente_id } }, as: :json
     assert_response 200
   end
 
