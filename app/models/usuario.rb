@@ -6,5 +6,5 @@ class Usuario < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX, message: 'Su email no es válido' }, uniqueness: true
   validates :password, length: { minimum: 8, message: 'Su clave debe tener al menos 8 caracteres' }
-  has_secure_password
+  #has_secure_password
 end
