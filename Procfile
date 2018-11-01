@@ -1,2 +1,2 @@
-release: rails db:migrate RAILS_ENV=development
+release: rake db:migrate RAILS_ENV=development
 web: rails server
