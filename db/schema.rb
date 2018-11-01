@@ -15,17 +15,6 @@ ActiveRecord::Schema.define(version: 2018_11_01_023340) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "buena_accions", force: :cascade do |t|
-    t.string "descripcion"
-    t.integer "puntaje"
-    t.bigint "remitente_id"
-    t.bigint "receptor_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["receptor_id"], name: "index_buena_accions_on_receptor_id"
-    t.index ["remitente_id"], name: "index_buena_accions_on_remitente_id"
-  end
-
   create_table "document_types", force: :cascade do |t|
     t.string "description"
     t.datetime "created_at", null: false
@@ -41,12 +30,6 @@ ActiveRecord::Schema.define(version: 2018_11_01_023340) do
     t.datetime "updated_at", null: false
     t.index ["receiver_id"], name: "index_good_actions_on_receiver_id"
     t.index ["sender_id"], name: "index_good_actions_on_sender_id"
-  end
-
-  create_table "tipo_documentos", force: :cascade do |t|
-    t.string "descripcion"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -70,23 +53,5 @@ ActiveRecord::Schema.define(version: 2018_11_01_023340) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "usuarios", force: :cascade do |t|
-    t.string "nombre"
-    t.string "apellido"
-    t.string "documento_identificacion"
-    t.bigint "tipo_documento_id"
-    t.string "email"
-    t.string "password_digest"
-    t.decimal "telefono", precision: 10
-    t.integer "puntaje_total"
-    t.integer "puntaje_disponible"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["documento_identificacion"], name: "index_usuarios_on_documento_identificacion", unique: true
-    t.index ["email"], name: "index_usuarios_on_email", unique: true
-    t.index ["tipo_documento_id"], name: "index_usuarios_on_tipo_documento_id"
-  end
-
   add_foreign_key "users", "document_types"
-  add_foreign_key "usuarios", "tipo_documentos"
 end
