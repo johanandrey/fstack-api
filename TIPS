@@ -5,35 +5,27 @@ SCAFFOLDS:
 - TipoDocumento:
     rails g scaffold Tipo_documento descripcion:string
 
+- DocumentType
+    rails g scaffold documentType description:string
+
 - Usuarios:
     rails g scaffold Usuario nombre:string apellido:string documento_identificacion:uniq tipo_documento:references email:uniq password:digest 'telefono:decimal{10,0}' puntaje_total:integer puntaje_disponible:integer
+    
+- Users:
+    rails g migration AddDocumentTypeToUsers document_type:references
+    rails g migration AddSomeToUsers name:string surname:string id_number:uniq 'phone:decimal{10,0}' total_score:integer available_score:integer
+    
 
 - Buenas acciones:
     rails g scaffold Buena_accion descripcion:string puntaje:integer remitente:references receptor:references
 
-Destroy: 
-    rails destroy scaffold 
+    rails g scaffold GoodAction description:string score:integer sender:references receiver:references
 
-rake db:migrate RAILS_ENV=development
+    belongs_to :sender, :class_name => "User", foreign_key: 'sender_id'
+    belongs_to :receiver, :class_name => "User", foreign_key: 'receiver_id'
 
 
-POST:
-
-curl -H "Content-Type: application/json" -d '{ "descripcion": "Cédula de Ciudadanía" }' -X POST http://localhost:3000/tipo_documentos
-curl -H "Content-Type: application/json" -d '{ "descripcion": "Tarjeta de identidad" }' -X POST http://localhost:3000/tipo_documentos
-
-curl -H "Content-Type: application/json" -d '@usuario.json'   http://localhost:3000/usuarios
-
-usuario.json
-{
-    "nombre": "Johan",
-    "apellido": "Barón",
-    "documento_identificacion": 56161631,
-    "tipo_documento_id": 1,
-    "email": "johanssfd@sdfs.com",
-    "password": "1234J$222",
-    "password_confirmation": "1234J$222",
-    "telefono": 32135145,
-    "puntaje_total": 351,
-    "puntaje_disponible": 351
-}
+ 
+ Formato del Header una vez está autenticado:
+ "key":"Authorization"
+ "value":"Bearer tokeb.obtenido.delauth"

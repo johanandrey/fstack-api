@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
   
-  resources :buena_accions
-  resources :usuarios
-  resources :tipo_documentos
+  resources :good_actions
+  resources :document_types
+  resources :users
   # Ruta para todos los servicios de usuarios
 
   # autenticación

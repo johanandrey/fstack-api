@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_30_024740) do
+ActiveRecord::Schema.define(version: 2018_11_01_023340) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,23 @@ ActiveRecord::Schema.define(version: 2018_10_30_024740) do
     t.datetime "updated_at", null: false
     t.index ["receptor_id"], name: "index_buena_accions_on_receptor_id"
     t.index ["remitente_id"], name: "index_buena_accions_on_remitente_id"
+  end
+
+  create_table "document_types", force: :cascade do |t|
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "good_actions", force: :cascade do |t|
+    t.string "description"
+    t.integer "score"
+    t.bigint "sender_id"
+    t.bigint "receiver_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["receiver_id"], name: "index_good_actions_on_receiver_id"
+    t.index ["sender_id"], name: "index_good_actions_on_sender_id"
   end
 
   create_table "tipo_documentos", force: :cascade do |t|
@@ -40,7 +57,16 @@ ActiveRecord::Schema.define(version: 2018_10_30_024740) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "document_type_id"
+    t.string "name"
+    t.string "surname"
+    t.string "id_number"
+    t.decimal "phone", precision: 10
+    t.integer "total_score"
+    t.integer "available_score"
+    t.index ["document_type_id"], name: "index_users_on_document_type_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["id_number"], name: "index_users_on_id_number", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -61,5 +87,6 @@ ActiveRecord::Schema.define(version: 2018_10_30_024740) do
     t.index ["tipo_documento_id"], name: "index_usuarios_on_tipo_documento_id"
   end
 
+  add_foreign_key "users", "document_types"
   add_foreign_key "usuarios", "tipo_documentos"
 end
