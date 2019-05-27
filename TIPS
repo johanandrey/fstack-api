@@ -1,0 +1,36 @@
+SCAFFOLDS:
+
+// Creación tablas:
+
+- TipoDocumento:
+    (OBSOLETE) rails g scaffold Tipo_documento descripcion:string
+
+- DocumentType
+    rails g scaffold documentType description:string
+
+- Usuarios:
+    (OBSOLETE) rails g scaffold Usuario nombre:string apellido:string documento_identificacion:uniq tipo_documento:references email:uniq password:digest 'telefono:decimal{10,0}' puntaje_total:integer puntaje_disponible:integer
+    
+- Users:
+    rails g migration AddDocumentTypeToUsers document_type:references
+    rails g migration AddSomeToUsers name:string surname:string id_number:uniq 'phone:decimal{10,0}' total_score:integer available_score:integer
+    
+
+- Buenas acciones:
+    (OBSOLETE) rails g scaffold Buena_accion descripcion:string puntaje:integer remitente:references receptor:references
+
+    rails g scaffold GoodAction description:string score:integer sender:references receiver:references
+
+    belongs_to :sender, :class_name => "User", foreign_key: 'sender_id'
+    belongs_to :receiver, :class_name => "User", foreign_key: 'receiver_id'
+
+
+ 
+ Formato del Header una vez está autenticado:
+ "key":"Authorization"
+ "value":"Bearer tokeb.obtenido.delauth"
+
+
+-- Login to pgsql in Heroku:
+
+ heroku pg:psql -a fstack-api
